@@ -1,0 +1,15 @@
+{
+    "03-select-from": "從資料表選擇",
+    "04-calculated-fields": "衍生計算欄位",
+    "05-functions": "函數",
+    "06-order-by": "排序查詢結果",
+    "07-where": "篩選資料",
+    "08-case": "條件邏輯",
+    "09-group-by-having": "分組與聚合結果篩選",
+    "10-subqueries": "子查詢",
+    "11-union-join": "垂直與水平合併",
+    "12-views": "虛擬資料表",
+    "13-cud": "建立更新與刪除資料表",
+    "14-more-exercises": "綜合練習題",
+    "15-more-more-exercises": "更多綜合練習題"
+}
