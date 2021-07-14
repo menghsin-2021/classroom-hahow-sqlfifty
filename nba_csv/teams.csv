@@ -1,0 +1,31 @@
+"isNBAFranchise","isAllStar","city","altCityName","fullName","tricode","teamId","nickname","urlName","teamShortName","confName","divName"
+1,0,Atlanta,Atlanta,Atlanta Hawks,ATL,1610612737,Hawks,hawks,Atlanta,East,Southeast
+1,0,Boston,Boston,Boston Celtics,BOS,1610612738,Celtics,celtics,Boston,East,Atlantic
+1,0,Cleveland,Cleveland,Cleveland Cavaliers,CLE,1610612739,Cavaliers,cavaliers,Cleveland,East,Central
+1,0,New Orleans,New Orleans,New Orleans Pelicans,NOP,1610612740,Pelicans,pelicans,New Orleans,West,Southwest
+1,0,Chicago,Chicago,Chicago Bulls,CHI,1610612741,Bulls,bulls,Chicago,East,Central
+1,0,Dallas,Dallas,Dallas Mavericks,DAL,1610612742,Mavericks,mavericks,Dallas,West,Southwest
+1,0,Denver,Denver,Denver Nuggets,DEN,1610612743,Nuggets,nuggets,Denver,West,Northwest
+1,0,Golden State,Golden State,Golden State Warriors,GSW,1610612744,Warriors,warriors,Golden State,West,Pacific
+1,0,Houston,Houston,Houston Rockets,HOU,1610612745,Rockets,rockets,Houston,West,Southwest
+1,0,LA,LA Clippers,LA Clippers,LAC,1610612746,Clippers,clippers,LA Clippers,West,Pacific
+1,0,Los Angeles,Los Angeles Lakers,Los Angeles Lakers,LAL,1610612747,Lakers,lakers,L.A. Lakers,West,Pacific
+1,0,Miami,Miami,Miami Heat,MIA,1610612748,Heat,heat,Miami,East,Southeast
+1,0,Milwaukee,Milwaukee,Milwaukee Bucks,MIL,1610612749,Bucks,bucks,Milwaukee,East,Central
+1,0,Minnesota,Minnesota,Minnesota Timberwolves,MIN,1610612750,Timberwolves,timberwolves,Minnesota,West,Northwest
+1,0,Brooklyn,Brooklyn,Brooklyn Nets,BKN,1610612751,Nets,nets,Brooklyn,East,Atlantic
+1,0,New York,New York,New York Knicks,NYK,1610612752,Knicks,knicks,New York,East,Atlantic
+1,0,Orlando,Orlando,Orlando Magic,ORL,1610612753,Magic,magic,Orlando,East,Southeast
+1,0,Indiana,Indiana,Indiana Pacers,IND,1610612754,Pacers,pacers,Indiana,East,Central
+1,0,Philadelphia,Philadelphia,Philadelphia 76ers,PHI,1610612755,"76ers",sixers,Philadelphia,East,Atlantic
+1,0,Phoenix,Phoenix,Phoenix Suns,PHX,1610612756,Suns,suns,Phoenix,West,Pacific
+1,0,Portland,Portland,Portland Trail Blazers,POR,1610612757,Trail Blazers,blazers,Portland,West,Northwest
+1,0,Sacramento,Sacramento,Sacramento Kings,SAC,1610612758,Kings,kings,Sacramento,West,Pacific
+1,0,San Antonio,San Antonio,San Antonio Spurs,SAS,1610612759,Spurs,spurs,San Antonio,West,Southwest
+1,0,Oklahoma City,Oklahoma City,Oklahoma City Thunder,OKC,1610612760,Thunder,thunder,Oklahoma City,West,Northwest
+1,0,Toronto,Toronto,Toronto Raptors,TOR,1610612761,Raptors,raptors,Toronto,East,Atlantic
+1,0,Utah,Utah,Utah Jazz,UTA,1610612762,Jazz,jazz,Utah,West,Northwest
+1,0,Memphis,Memphis,Memphis Grizzlies,MEM,1610612763,Grizzlies,grizzlies,Memphis,West,Southwest
+1,0,Washington,Washington,Washington Wizards,WAS,1610612764,Wizards,wizards,Washington,East,Southeast
+1,0,Detroit,Detroit,Detroit Pistons,DET,1610612765,Pistons,pistons,Detroit,East,Central
+1,0,Charlotte,Charlotte,Charlotte Hornets,CHA,1610612766,Hornets,hornets,Charlotte,East,Southeast
