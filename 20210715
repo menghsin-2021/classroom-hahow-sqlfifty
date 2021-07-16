@@ -1,0 +1,461 @@
+SELECT *
+  FROM admin_regions
+ LIMIT 5;
+
+SELECT confName,  
+       divName,
+       fullName
+FROM teams
+LIMIT 10;
+
+SELECT firstName AS first_name,
+       lastName AS last_name
+  FROM players
+  LIMIT 5;
+  
+SELECT DISTINCT county
+FROM admin_regions;
+
+SELECT DISTINCT divName
+FROM teams;
+
+SELECT Confirmed, 
+       Recovered, 
+       Deaths,
+       Confirmed - Recovered - Deaths AS Active
+FROM daily_report
+
+SELECT heightMeters,
+       weightKilograms,
+       weightKilograms / heightMeters / heightMeters AS bmi
+  FROM players
+  
+SELECT DISTINCT confName || ', ' || divName AS conf_div
+FROM teams
+
+SELECT heightMeters,
+       weightKilograms,
+       ROUND(weightKilograms / heightMeters / heightMeters, 2) AS bmi
+  FROM players
+  
+SELECT assists,
+        turnovers,
+        CAST(assists AS REAL) / turnovers AS assist_turnover_ratio
+  FROM career_summaries
+  
+SELECT DISTINCT STRFTIME('%Y-%m', Date) AS distinct_yeat_month
+  FROM time_series
+  
+SELECT SUM(votes) AS total_presidential_votes
+  FROM presidential
+
+SELECT *
+FROM daily_report
+
+SELECT SUM(Confirmed) AS total_confirmed,
+        SUM(Recovered) AS total_recovered,
+        SUM(Deaths) AS total_deaths
+  FROM daily_report
+
+SELECT personId,
+       ppg
+FROM career_summaries
+ORDER BY ppg DESC
+LIMIT 10;
+
+SELECT Date,
+        Country_Region,
+        Daily_Cases
+  FROM time_series
+  ORDER BY Daily_Cases DESC
+  LIMIT 10;
+  
+SELECT personId,
+       assists,
+       turnovers
+FROM career_summaries
+ORDER BY (CAST(assists AS REAL) / turnovers) DESC
+LIMIT 10;
+
+
+
+SELECT Country_Region, Date, Confirmed, Daily_Cases
+FROM time_series
+WHERE Country_Region = "Taiwan";
+
+SELECT *
+FROM movies
+LIMIT 5
+
+SELECT title, rating, director, runtime
+FROM movies
+WHERE release_year = 1994;
+
+SELECT id, name
+FROM actors
+WHERE name IN ("Tom Hanks", "Christian Bale", "Leonardo DiCaprio");
+
+
+SELECT title, director
+FROM movies
+WHERE director IN ("Christopher Nolan", "Peter Jackson")
+ORDER BY director;
+
+SELECT DISTINCT Country_Region
+FROM lookup_table
+WHERE Country_Region LIKE "%Land%"
+ORDER BY Country_Region
+LIMIT 10;
+
+SELECT Combined_Key,
+       CASE WHEN Combined_Key LIKE "%US" THEN 1
+       ELSE 0 END AS is_us
+FROM daily_report
+ORDER BY is_us
+
+SELECT title,
+        rating,
+        CASE WHEN rating > 8.7 THEN 'Awesome'
+            WHEN rating > 8.4 THEN 'Terrific'
+            ELSE 'Great' END AS rating_category
+FROM movies
+ORDER BY rating DESC
+
+SELECT DISTINCT county,
+       CASE WHEN county IN ('新北市', '桃園市', '臺中市', '臺北市', '臺南市', '高雄市') THEN '六都'
+       ELSE '非六都' END AS county_type
+FROM admin_regions
+ORDER BY county_type
+
+SELECT *
+FROM movies
+LIMIT 5
+
+SELECT release_year,
+       COUNT(release_year) AS number_of_movies
+FROM movies
+GROUP BY release_year
+
+
+SELECT release_year,
+       COUNT(release_year) AS number_of_movies
+FROM movies
+GROUP BY release_year
+HAVING number_of_movies >= 5
+
+SELECT *
+FROM presidential
+LIMIT 5
+
+SELECT candidate_id,
+       SUM(votes) AS total_votes
+FROM presidential
+GROUP BY candidate_id
+
+SELECT *
+FROM players
+LIMIT 5
+
+SELECT country,
+       COUNT(country) AS number_of_players
+FROM   players
+GROUP BY country
+ORDER BY number_of_players DESC
+
+SELECT country,
+       COUNT(country) AS number_of_players
+FROM   players
+GROUP BY country
+HAVING number_of_players >= 2 AND number_of_players <= 9
+ORDER BY number_of_players DESC, country
+
+SELECT *
+  FROM players
+ LIMIT 5 
+ 
+SELECT *
+  FROM career_summaries
+ LIMIT 5 
+ 
+SELECT *
+  FROM teams
+ LIMIT 5 
+ 
+SELECT MAX(heightMeters)
+  FROM players
+  
+SELECT MIN(heightMeters)
+  FROM players
+  
+SELECT firstName,
+       lastName,
+       heightMeters
+  FROM players
+ WHERE heightMeters = (SELECT MIN(heightMeters)
+                         FROM players) 
+    OR heightMeters = (SELECT MAX(heightMeters)
+                         FROM players)
+                         
+SELECT country,
+        COUNT(*) AS player_number
+  FROM players
+  GROUP BY country
+  ORDER BY player_number DESC
+  
+SELECT COUNT(*)
+FROM players
+
+  
+SELECT country,
+        ROUND(CAST(player_number AS float) / (SELECT COUNT(*)
+                                                FROM players), 6) AS player_percentage
+FROM (SELECT country,
+        COUNT(*) AS player_number
+            FROM players
+        GROUP BY country
+        ORDER BY player_number DESC) AS percentage
+
+SELECT personId
+FROM career_summaries
+WHERE ppg = (SELECT MAX(ppg)
+                FROM career_summaries)
+                
+SELECT firstName,
+       lastName
+  FROM players
+ WHERE personId = (SELECT personId
+                     FROM career_summaries
+                    WHERE ppg = (SELECT MAX(ppg)
+                     FROM career_summaries))
+                     
+SELECT teamId
+  FROM teams 
+ WHERE fullName = 'Brooklyn Nets'
+ 
+SELECT firstName, lastName
+  FROM players
+  WHERE teamId = (SELECT teamId
+                    FROM teams 
+                    WHERE fullName = 'Brooklyn Nets')
+
+
+SELECT *
+FROM presidential
+LIMIT 5
+
+SELECT candidate_id,
+        SUM(votes) AS SUM_vote
+FROM presidential
+GROUP BY candidate_id
+ORDER BY candidate_id
+
+SELECT SUM(votes)
+FROM presidential
+
+SELECT candidate_id,
+       CAST(ROUND(SUM_vote*100.0 / (SELECT SUM(votes)
+                                      FROM presidential), 2) AS REAL) || '%'  AS votes_percentage
+  FROM (SELECT candidate_id,
+               SUM(votes) AS SUM_vote
+          FROM presidential
+      GROUP BY candidate_id
+      ORDER BY candidate_id) AS percentage
+  
+
+SELECT *
+FROM daily_report
+LIMIT 5
+
+SELECT *
+FROM lookup_table
+LIMIT 5
+
+SELECT *
+FROM time_series
+LIMIT 5
+
+SELECT Country_Region,
+       SUM(Confirmed) AS total_confirmed
+  FROM lookup_table
+  JOIN daily_report
+    ON lookup_table.Combined_Key = daily_report.Combined_Key
+GROUP BY Country_Region
+ORDER BY total_confirmed DESC
+LIMIT 10;
+    
+SELECT *
+FROM legislative_at_large
+LIMIT 5
+
+SELECT *
+FROM legislative_regional
+LIMIT 5
+
+SELECT *
+FROM parties
+LIMIT 5
+
+SELECT *
+FROM candidates
+LIMIT 5
+
+SELECT parties.party, 
+       '不分區立委' AS election,
+       ROUND(CAST(SUM(legislative_at_large.votes) AS REAL) / (SELECT SUM(legislative_at_large.votes)
+                                                               FROM legislative_at_large), 4) AS votes_percentage
+  FROM legislative_at_large
+  JOIN parties
+    ON legislative_at_large.party_id = parties.id
+    WHERE party IN ('中國國民黨', '民主進步黨', '親民黨')
+GROUP BY parties.party   
+ UNION
+SELECT parties.party, 
+       '區域立委' AS election,
+       ROUND(CAST(SUM(legislative_regional.votes) AS REAL) / (SELECT SUM(legislative_regional.votes)
+                                                               FROM legislative_regional), 4) AS votes_percentage
+  FROM legislative_regional
+  JOIN candidates
+    ON legislative_regional.candidate_id = candidates.id
+  JOIN parties
+    ON candidates.party_id = parties.id  
+ WHERE party IN ('中國國民黨', '民主進步黨', '親民黨')
+ GROUP BY parties.party  
+ ORDER BY election 
+ 
+SELECT *
+FROM career_summaries
+LIMIT 5
+
+SELECT *
+FROM players
+LIMIT 5
+
+SELECT *
+FROM teams
+LIMIT 5
+
+SELECT teams.fullName AS team_name,
+       firstName || ' ' || lastName AS player_name,
+       ROUND(CAST(ppg AS REAL), 1) AS ppg
+  FROM teams
+  JOIN players
+    ON teams.teamId = players.teamId
+  JOIN career_summaries
+    ON players.personId = career_summaries.personId
+WHERE team_name = 'Los Angeles Lakers'
+ORDER BY ppg DESC
+
+
+SELECT teams.fullName AS team,
+       firstName || ' ' || lastName AS player,
+       ROUND(MAX(ppg), 1) AS ppg
+  FROM teams
+  JOIN players
+    ON teams.teamId = players.teamId
+  JOIN career_summaries
+    ON players.personId = career_summaries.personId
+GROUP BY team
+ORDER BY team
+
+SELECT *
+FROM actors
+LIMIT 5
+
+SELECT *
+FROM casting
+LIMIT 5
+
+SELECT *
+FROM movies
+LIMIT 5
+
+SELECT movies.release_year AS release_year,
+       movies.title AS title,
+       actors.name AS name,
+       CASE WHEN casting.ord = 1 THEN 1 ELSE 0 END AS is_lead_actor
+  FROM movies
+  JOIN casting
+    ON movies.id = casting.movie_id
+  JOIN actors
+    ON casting.actor_id = actors.id
+    WHERE name = 'Tom Hanks' OR name = 'Leonardo DiCaprio'
+ORDER BY release_year 
+
+
+SELECT *
+FROM daily_report
+LIMIT 5
+
+SELECT *
+FROM lookup_table
+LIMIT 5
+
+SELECT *
+FROM time_series
+LIMIT 5
+
+CREATE VIEW covid19.total_confirmed_by_country_region (Country_Region, total_confirmed)
+    AS
+SELECT lookup_table.Country_Region AS Country_Region, 
+       SUM(daily_report.Confirmed) AS total_confirmed
+  FROM lookup_table
+  JOIN daily_report
+    ON daily_report.Combined_Key = lookup_table.Combined_Key
+GROUP BY Country_Region
+
+SELECT *
+  FROM total_confirmed_by_country_region
+  
+
+SELECT *
+FROM presidential
+LIMIT 50
+
+SELECT *
+FROM candidates
+
+
+CREATE VIEW twElection2020.presidential_total_votes (number, candidate, total_votes)
+    AS
+SELECT candidates.id AS number,
+       candidates.candidate AS candidate,
+       SUM(presidential.votes) AS total_votes
+  FROM candidates
+  JOIN presidential
+    ON candidates.id = presidential.candidate_id
+GROUP BY number
+
+SELECT * 
+  FROM presidential_total_votes
+  
+
+SELECT *
+FROM career_summaries
+LIMIT 5
+
+SELECT *
+FROM players
+LIMIT 5
+
+SELECT *
+FROM teams
+LIMIT 5
+
+CREATE VIEW nba.ppg_leader_by_teams (team, firstName, lastName, ppg)
+    AS
+SELECT teams.fullName AS team,
+       players.firstName AS firstName,
+       players.lastName AS lastName,
+       MAX(career_summaries.ppg) AS ppg
+  FROM teams
+  JOIN players
+    ON teams.teamId = players.teamId
+  JOIN career_summaries
+    ON players.personId = career_summaries.personId
+GROUP BY team
+ORDER BY team
+
+SELECT *
+  FROM ppg_leader_by_teams;
+
+
